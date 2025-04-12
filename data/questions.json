@@ -1,0 +1,209 @@
+[
+    {
+      "id":"1",  
+      "question": "Finding the Median Element in a Doubly Linked List",
+        "definition": "A doubly linked list is a data structure where each node points to both the next and previous node, allowing access from both the front and back, thus making data structures more efficient in certain cases.",
+        "description": "A function that finds the median element in a given doubly linked list."
+      },
+      {
+        "id":"2",
+        "question":"Caesar Chiper",
+        "definition":"In the classical encryption method called the Caesar cipher, each letter is shifted a certain number of places in the alphabet.",
+        "description":" If the key is chosen as 3, what does the word 'HELLO WORLD' transform into in its encrypted form?"
+    
+      },
+      {
+        "id":"3",
+        "question":"Anagram Solutions",
+        "definition":"An anagram is a process of rearranging the letters of a word or phrase to create a new word or phrase that contains the same letters but in a different order.",
+        "description":"For each word in a given string, find all pairs of words in the same string that are anagrams of each other. Additionally, check whether each word is an anagram of itself, and return the results as a list."
+      },
+      {
+        "id":"4",
+        "question":"Binary Search",
+        "definition":"You're given a sorted list nums and a target number target. Write a function to find the index of the target number in this list. If the target number is not in the list, return -1.",
+        "description":"Input: nums = [-1, 0, 3, 5, 9, 12], target = 9"
+    
+      },
+      {
+        "id":"5",
+        "question":"Array Rotation Algorithm with Direction and Step Control",
+        "definition":"You're asked to write an algorithm to rotate the elements in an array by a specified number of steps and in a particular direction. However, this algorithm will face some additional challenges:\nThe array could be very large, so the time and space complexity of your algorithm are important.\nThe rotation can be done both to the right and to the left.\nThe number of steps for rotation can be negative, which would reverse the direction of rotation.\nThe array can consist of both integers and strings.\nThe rotation operation should be done in-place; that is, no additional array should be created.",
+        "description":"Examples:\nInput: arr = [1, 2, 3, 4, 5], steps = 2, direction = 'right'\nOutput: [4, 5, 1, 2, 3]\nInput: arr = ['a', 'b', 'c', 'd'], steps = -1, direction = 'left'\nOutput: ['d', 'a', 'b', 'c']\nInput: arr = [1, 'a', 3, 'b', 5], steps = 3, direction = 'left'\nOutput: ['b', 5, 1, 'a', 3]\n\nHint:\n You can normalize the number of steps based on the length of the array using the modulo (%) operator. Also, be careful to handle negative step numbers and different directions."
+      },
+      {
+        "id":"6",
+        "question":"Finding Longest Palindromic Substring with Linear Time Complexity",
+        "definition":"You're asked to develop an algorithm to find the longest palindromic substring of a given string of a certain size (N) with a time complexity of O(n), meaning it should grow linearly with the length of the string in the worst case.",
+        "description":"Additionally, this palindromic substring must definitely exist within the given string as another substring."
+    
+      },
+      {
+        "id":"7",
+        "question": "Comprehensive Numeric Expression Evaluation",
+        "definition": "Write a function that processes a given numerical expression (e.g., '3 + 2 * 4').",
+        "description": "A function that processes a given numerical expression and returns the result."
+      },
+      {
+        "id":"8",
+        "question":"Finding Path in Binary Tree",
+        "definition":"Write a function that takes a binary tree and a target node as input and finds the path from the root to the target node in this tree.",
+        "description":"Input: root = [3,5,1,6,2,0,8,None,None,7,4], target = 5"
+      },
+      {
+        "id":"9",
+        "question": "Finding the Longest Common Subsequence",
+        "definition": "The longest common subsequence is a subsequence in two strings that doesn't have to occur in the same order but must maintain the original order of elements.",
+        "description": "A function that finds the longest common subsequence between two given strings."
+      },
+      {
+        "id":"10",
+        "question": "Minimum Window Substring",
+        "definition": "Given a string (S) and a character list (T), ",
+        "description": "find the minimum window in S which will contain all the characters in T."
+      },
+      {
+        "id":"11",
+          "question": "Sudoku Solver",
+          "definition": "Write a program ",
+          "description":"to solve a Sudoku puzzle."
+      },  
+      {
+        "id":"12",
+        "question":"Addition Chain",
+        "definition":"Generate the shortest addition chain to obtain a given number (n). ",
+        "description":"An addition chain is a sequence of operations where you add numbers together in a specific order to reach a target number."
+      },
+      {
+        "id":"13",
+        "question":"Shortest Path Problem",
+        "definition":"The shortest path problem refers to finding the shortest route between two nodes in a weighted graph. Here, the weights of the edges between nodes (such as distance, cost, etc.) are crucial, aiming to determine the path with the smallest total weight. Algorithms like Dijkstra or similar ones are typically used to solve these types of problems.",
+        "description": "Given a weighted directed graph, find the shortest path (the path with the lowest total weight) between two nodes."
+      },
+      {
+        "id":"14",
+        "question":"Crypto Key Finding Question",
+        "definition":"For a cryptography system, the task is to create a encryption key that satisfies the following conditions:Choose a random number between 1 and 1000 and name it as 'a'.The remainder when 'a' is divided by 17 should be 10.The remainder when 'a' is divided by 31 should be 15. Find the number 'a' that satisfies these conditions and create the encryption key.",
+        "description":"Finding the number 'a' that satisfies the required conditions"
+    
+      },
+      {
+        "id":"15",
+        "question":"Squares a Chess Knight Can Pass",
+        "definition":"Find all the squares that the chess knight can pass from a given starting position on the chessboard. ",
+        "description":"Determine the position of the knight and print the shape of the places on the board that it can pass on the console."
+      },
+      {
+        "id":"16",
+        "question":"Triple Numbers Equal to Given Sum and Product",
+        "definition":"Find three numbers equal to a given target number, where the sum and product of these three numbers should be equal to the given number.",
+        "description":"This code uses a simple brute-force approach to find three numbers equal to a given number, where their sum and product are also equal to the given number."
+      },
+      {
+        "id":"17",
+        "question":"Key Encryption",
+          "definition":"You need to create a key to encrypt a message. The key must satisfy the following conditions: Choose a random number between 1 and 100 and name it as 'p'.Choose a random number between 1 and 50 and name it as 'q'.'p' and 'q' must be prime numbers.'p' and 'q' must be different from each other.Calculate n = p • q and use n as the key. ",
+          "description":"Calculate the Euler's totient function of n: φ(n) = (p - 1) • (q - 1) and select a value for e using φ(n). The value of e should satisfy 1 < e < φ(n) and be coprime with φ(n).Find a value for d corresponding to the e value. d • e ≡ 1 (mod φ(n)) must hold.Use n and e values as the public key, and n and d values as the private key.Create a key that satisfies these conditions."
+      },
+      {
+        "id":"18",
+        "question":"Reversible Prime Numbers",
+        "definition":"Find reversible prime numbers in a given range (for example, between 1 and 100).",
+        "description":"Reversible prime numbers are those that are prime both in their original form and when reversed."
+      },
+      {
+        "id":"19",
+        "question":"Searching for a String in a Binary Search Tree (BST)",
+        "definition":"Search for a string in a given binary search tree (BST) and check if the string exists in the tree.",
+        "description":"Searching for a string in a binary search tree (BST) involves comparing the string starting from the root. If the string is smaller than the root, we move to the left; if it's larger, we move to the right. This process continues until we find a match or reach a leaf node where the string is not found. If the string matches the value of the current node, then the string is found in the tree; otherwise, it's not found."
+      },
+      {
+        "id":"20",
+        "question":"Diffie-Hellman Key Exchange",
+        "definition":"Alice and Bob are planning to establish a secure communication using Diffie-Hellman key exchange. During this key exchange, Alice and Bob will communicate with each other to create a shared key.As a first step, Alice and Bob need to choose a common prime number and a base number. This prime number should be large enough to ensure secure communication.Then, both parties will select their own private keys: a for Alice and b for Bob. These private keys should be smaller than the chosen prime number and predetermined.Finally, both Alice and Bob will use the chosen prime number, base number, and their private keys to generate a shared key.",
+        "description":"Given this scenario, write a Python code with the following parameters:Prime number p=353 Base number g=3 Alice's private key a=97 Bob's private key b=233 Implement the Diffie-Hellman key exchange and compute the shared key."
+      },
+      {
+        "id":"21",
+        "question": "Creating and Visualizing an NxN Unit Matrix with Python",
+        "definition": "Write a Python program that creates an ",
+        "description": "NxN identity matrix without user input and prints it in matrix form on the screen for N=5."
+      },
+      {
+        "id":"22",
+        "question":"Filling Matrix in Spiral Order",
+        "definition":" Given an integer n and a matrix of size n x n, fill the matrix in spiral order (right, down, left, up).",
+        "description":"Consider an integer 'n' and an 'n x n' sized matrix. Filling the matrix in spiral order means filling the matrix from the outer to inner layer. This filling process is performed by creating a clockwise loop starting from the right. First, the outer frame of the matrix is filled, then the inner frame is filled, and this process continues recursively."
+    
+      },
+      {
+        "id":"23",
+        "question": "Python Functions for Generating and Checking Cantor Set Membership",
+        "definition": "Write a Python function that generates the Cantor set for a given value of n. The Cantor set is a set of real numbers, each element of which is between 0 and 1 and is continuously irrational. This set is created by cutting each subinterval in half at each step. For example, for n=3, the Cantor set looks like this:  C3 = {0, 1/3, 2/3, 1}",
+        "description": "Next, write a function for the subset of the Cantor set that contains the given value x. If the number x is in the Cantor set, the function should return True; otherwise, it should return False."
+      },
+      {
+        "id":"24",
+        "question": "Python Programs for Solving Linear Equations with Given Coefficients",
+        "definition": "Write a Python program to solve the equation ax+by=1 for given values of a=3 and b=5, where x and y are variables.Then, use the solution of this equation to write a program that solves th equation cx+dw=1 for given values of c=19 and d=27, where z and w are variables.",
+        "description": "Finally, write a program to solve the equation ex+fy=1 for given values of e=7 and f=11, where m and n are variables."
+      },
+      {
+        "id":"25",
+        "question":"Euclidean Algorithm",
+        "definition":"If (1140, 480) = d, find d and determine an integer pair (x, y) ",
+        "description":"such that d = 1140x + 480y."
+      },
+      {
+        "id":"26",
+        "question": "Python Program for Finding Prime Factors and Decrypting RSA Encryption",
+        "definition": "You received an encrypted text using RSA encryption. To decrypt it, you need to choose two large prime numbers p and q.Compute n=p.q and ϕ(n)=(p−1)(q−1).",
+        "description": "Then select an integer d such that ed≡1modϕ(n). Write a Python program to find p, q, and d given the values of ϕ(n) and e."
+      },
+      {
+        "id":"27",
+        "question": "Identity Matrix Generator",
+        "definition": "Write a Python program that creates an NxN identity matrix for a fixed value of N=5 without prompting the user for any input. The program should define both the size and content of the matrix internally.",
+        "description": " It should generate a 5x5 identity matrix based on the fixed value of N and print this matrix in matrix format to the screen. No input should be taken from the user."
+      },
+      {
+        "id":"28",
+        "question":"Division Algorithm",
+        "definition":"Let's take a = 3 and b = 543. b = 543 integer 543=181.3+0, r =0 181=60.3+1, r =1 1",
+        "description":"Write it according to base a = 3."
+      },
+      {
+        "id":"29",
+        "question": "Python Program for Encrypting a Message using Modular Exponentiation with a Public Key",
+        "definition": "Write a Python program to encrypt a message using a given public key.Use the ASCII code to convert each character of the message into a numerical value and then encrypt it using modular exponentiation.",
+        "description": " message: 'Hello, world!' "
+      },
+      {
+        "id":"30",
+        "question": "Python Program to Find Decryption Key (d) using Prime Numbers (p and q) for RSA Encryption",
+        "definition": "You've received an encrypted text using RSA encryption. To decrypt it, you need to choose two large prime numbers, p and q. n is calculated as n = pq and   ϕ(n) = (p -1)(q-1) calculated.",
+        "description": " Then, a value for d is selected, which satisfies the condition ed ≡ 1modϕ(n). Write a Python program to find the prime numbers p and q along with the value d."
+      },
+      {
+        "id":"31",
+        "question":"Euler's φ function",
+        "definition":"Find φ(n) for",
+        "description":"n = 642."
+    
+      },
+      {
+        "id":"32",
+        "question":"Congruence",
+        "definition":"Write a Python program that finds all the solutions ",
+        "description":"of the congruence 55x ≡ 20(mod105)."
+    
+      },
+    
+      {
+        "id":"33",
+        "question": "Python Program for Analyzing Plant Growth and Determining Constant k with a Differential Equation",
+        "definition": " A farmer wants to integrate a new water system into their field. They believe they can model plant growth using a differential equation. Factors affecting plant growth in the field include sunlight, soil moisture levels, and fertilizer amounts. Based on the farmer's data, they think they can model plant growth using the following differential equation: dt/dP=(1−e−kt)⋅I⋅N⋅G ",
+        "description": "Here, P represents plant size, t represents time, k is a constant, I represents sunlight intensity (ranging from 0 to 10), N represents soil moisture level (ranging from 0 to 10), G represents fertilizer amount (ranging from 0 to 10). The farmer wants to optimize plant growth using this equation. However, they need to perform data analysis to find the value of the constant k. They have data on time and plant size at their disposal."
+      }
+
+]

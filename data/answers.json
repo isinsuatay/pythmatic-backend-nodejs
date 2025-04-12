@@ -1,0 +1,184 @@
+[
+    {
+        "id":"1",
+        "questionId": "1",  
+        "answer": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n        self.prev = None\n\nclass DoublyLinkedList:\n    def __init__(self):\n        self.head = None\n        self.tail = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            self.tail = new_node\n        else:\n            self.tail.next = new_node\n            new_node.prev = self.tail\n            self.tail = new_node\n\n    def find_middle(self):\n        slow_ptr = self.head\n        fast_ptr = self.head\n        while fast_ptr and fast_ptr.next:\n            slow_ptr = slow_ptr.next\n            fast_ptr = fast_ptr.next.next\n        return slow_ptr.data if slow_ptr else None\n\n# Sample Usage\ndll = DoublyLinkedList()\ndll.append(1)\ndll.append(2)\ndll.append(3)\ndll.append(4)\ndll.append(5)\nprint(dll.find_middle())  # Output: 3"
+      },
+      {
+        "id":"2",
+        "questionId": "2",
+        "answer": "def caesar_cipher(text, shift):\n    result = \"\"\n    \n    # Traverse through each character in the text\n    for char in text:\n        # Check if character is an uppercase letter\n        if char.isupper():\n            # Find the position in 0-25 and perform the shift\n            result += chr((ord(char) + shift - 65) % 26 + 65)\n        # Check if character is a lowercase letter\n        elif char.islower():\n            # Find the position in 0-25 and perform the shift\n            result += chr((ord(char) + shift - 97) % 26 + 97)\n        else:\n            # If it's not a letter, just add it as it is (e.g., space or punctuation)\n            result += char\n    \n    return result\n\n# Example usage\ntext = \"HELLO WORLD\"\nshift = 3\nencrypted_text = caesar_cipher(text, shift)\nprint(\"Encrypted text:\", encrypted_text)"
+    
+    
+      },
+      {
+        "id":"3",
+        "questionId": "3",
+        "answer": "from collections import defaultdict\n\ndef find_anagrams(text):\n    # Step 1: Split the text into words\n    words = text.split()\n    \n    # Step 2: Sort the letters of each word and create a dictionary using this sorted order as the key\n    anagram_groups = defaultdict(list)\n    for word in words:\n        sorted_word = ''.join(sorted(word))\n        anagram_groups[sorted_word].append(word)\n    \n    # Step 3: Words with the same key are anagrams. Gather these words and list the results\n    anagram_list = []\n    for key, word_list in anagram_groups.items():\n        if len(word_list) > 1:\n            for i in range(len(word_list)):\n                for j in range(i + 1, len(word_list)):\n                    anagram_list.append((word_list[i], word_list[j]))\n            # Include words that are anagrams of themselves\n            for word in word_list:\n                anagram_list.append((word, word))\n    \n    return anagram_list\n\n# Example usage\ntext = \"listen silent enlist inlets tinsel\"\nresult = find_anagrams(text)\nfor pair in result:\n    print(pair)"
+    
+    
+      },
+      {
+        "id":"4",
+        "questionId": "4",
+        "answer": "def binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = left + (right - left) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n\n# Test\nnums = [-1, 0, 3, 5, 9, 12]\ntarget = 9\nprint(binary_search(nums, target))  # Output: 4"
+      },
+      {
+        "id":"5",
+        "questionId": "5",
+        "answer": "def rotate_array(arr, steps, direction):\n    n = len(arr)\n    if n == 0:\n        return\n    \n    # Normalize steps to be within the bounds of the array length\n    steps = steps % n\n    \n    # Adjust steps for direction\n    if direction == \"right\":\n        steps = n - steps\n    elif direction == \"left\" and steps < 0:\n        steps = -steps % n\n    elif direction == \"right\" and steps < 0:\n        steps = (n + steps) % n\n    \n    # Reverse helper function\n    def reverse(sub_arr, start, end):\n        while start < end:\n            sub_arr[start], sub_arr[end] = sub_arr[end], sub_arr[start]\n            start += 1\n            end -= 1\n    \n    # Rotate the array in place using the reverse method\n    reverse(arr, 0, steps - 1)\n    reverse(arr, steps, n - 1)\n    reverse(arr, 0, n - 1)\n\n# Test cases\narr1 = [1, 2, 3, 4, 5]\nrotate_array(arr1, 2, \"right\")\nprint(arr1)  # Output: [4, 5, 1, 2, 3]\n\narr2 = [\"a\", \"b\", \"c\", \"d\"]\nrotate_array(arr2, -1, \"left\")\nprint(arr2)  # Output: [\"d\", \"a\", \"b\", \"c\"]\n\narr3 = [1, \"a\", 3, \"b\", 5]\nrotate_array(arr3, 3, \"left\")\nprint(arr3)  # Output: [\"b\", 5, 1, \"a\", 3]"
+    
+    
+      },
+      {
+    
+        "id":"6",
+        "questionId": "6",
+        "answer": "def longest_palindromic_substring(s):\n    def expand_around_center(left, right):\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return s[left+1:right]\n\n    longest_palindrome = \"\"\n    for i in range(len(s)):\n        # Search for palindrome around single digit center\n        pal1 = expand_around_center(i, i)\n        if len(pal1) > len(longest_palindrome):\n            longest_palindrome = pal1\n\n        # Search for palindrome around double digit center\n        pal2 = expand_around_center(i, i+1)\n        if len(pal2) > len(longest_palindrome):\n            longest_palindrome = pal2\n            \n    return longest_palindrome\n\ndef main():\n    text = \"abbaccd\"\n    longest_palindrome = longest_palindromic_substring(text)\n    print(f\"Longest palindromic substring: \\\"{longest_palindrome}\\\"\")\n\nif __name__ == \"__main__\":\n    main() #Output:'abba' "
+    
+    
+      },
+      {
+        "id":"7",
+        "questionId": "7",
+        "answer": "def evaluate_expression(expression):\n    try:\n        result = eval(expression)\n        return result\n    except Exception as e:\n        return f\"Error: {e}\"\n\n# Example usage:\nexpression = '3 + 2 * 4'\nresult = evaluate_expression(expression)\nprint(result)  # Output: 11"
+    
+      },
+      {
+        "id":"8",
+        "questionId": "8",
+        "answer": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef find_path(root, target):\n    def dfs(node, path):\n        if not node:\n            return []\n        if node.val == target:\n            return path + [node.val]\n        left = dfs(node.left, path + [node.val])\n        right = dfs(node.right, path + [node.val])\n        return left or right\n    \n    return dfs(root, [])\n\n# Test\nroot = TreeNode(3)\nroot.left = TreeNode(5)\nroot.right = TreeNode(1)\nroot.left.left = TreeNode(6)\nroot.left.right = TreeNode(2)\nroot.right.left = TreeNode(0)\nroot.right.right = TreeNode(8)\nroot.left.right.left = TreeNode(7)\nroot.left.right.right = TreeNode(4)\n\ntarget = 5\nprint(find_path(root, target))  # Output: [3, 5]"
+    
+      },
+      {
+        "id":"9",
+        "questionId": "9",
+        "answer": "def longest_common_subsequence(s1, s2):\n    n = len(s1)\n    m = len(s2)\n    dp = [[0] * (m + 1) for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            if s1[i - 1] == s2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n\n    result = ''\n    i, j = n, m\n    while i > 0 and j > 0:\n        if s1[i - 1] == s2[j - 1]:\n            result = s1[i - 1] + result\n            i -= 1\n            j -= 1\n        elif dp[i - 1][j] > dp[i][j - 1]:\n            i -= 1\n        else:\n            j -= 1\n\n    return result\n\n# Sample Usage\ns1 = 'abcde'\ns2 = 'ace'\nprint(longest_common_subsequence(s1, s2))  # Output: 'ace'"
+      },
+      {
+        "id":"10",
+        "questionId": "10",
+        "answer": "from collections import Counter\n\ndef min_window_substring(s, t):\n    if not s or not t:\n        return \"\"\n    \n    t_counts = Counter(t)\n    required = len(t_counts)\n    \n    left, right = 0, 0\n    formed = 0\n    window_counts = {}\n    ans = float(\"inf\"), None, None\n    \n    while right < len(s):\n        char = s[right]\n        window_counts[char] = window_counts.get(char, 0) + 1\n        \n        if char in t_counts and window_counts[char] == t_counts[char]:\n            formed += 1\n        \n        while formed == required:\n            if right - left + 1 < ans[0]:\n                ans = right - left + 1, left, right\n                \n            char = s[left]\n            window_counts[char] -= 1\n            \n            if char in t_counts and window_counts[char] < t_counts[char]:\n                formed -= 1\n            \n            left += 1\n        \n        right += 1\n    \n    return \"\" if ans[0] == float(\"inf\") else s[ans[1]: ans[2] + 1]\n\n# Örnek kullanım:\ns = \"ADOBECODEBANC\"\nt = \"ABC\"\nprint(min_window_substring(s, t))  # Çıktı: \"BANC\""
+      },
+      {
+        "id":"11",
+        "questionId": "11",
+        "answer": "def is_valid(board, row, col, num):\n    for i in range(9):\n        if board[row][i] == num or board[i][col] == num:\n            return False\n        \n    start_row, start_col = 3 * (row // 3), 3 * (col // 3)\n    \n    for i in range(3):\n        for j in range(3):\n            if board[i + start_row][j + start_col] == num:\n                return False\n    \n    return True\n\ndef solve_sudoku(board):\n    empty = find_empty_location(board)\n    if not empty:\n        return True\n    \n    row, col = empty\n    \n    for num in range(1, 10):\n        if is_valid(board, row, col, num):\n            board[row][col] = num\n            \n            if solve_sudoku(board):\n                return True\n            \n            board[row][col] = 0\n    \n    return False\n\ndef find_empty_location(board):\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] == 0:\n                return i, j\n    \n    return None\n\n# Sudoku board\nsudoku_board = [\n    [5, 3, 0, 0, 7, 0, 0, 0, 0],\n    [6, 0, 0, 1, 9, 5, 0, 0, 0],\n    [0, 9, 8, 0, 0, 0, 0, 6, 0],\n    [8, 0, 0, 0, 6, 0, 0, 0, 3],\n    [4, 0, 0, 8, 0, 3, 0, 0, 1],\n    [7, 0, 0, 0, 2, 0, 0, 0, 6],\n    [0, 6, 0, 0, 0, 0, 2, 8, 0],\n    [0, 0, 0, 4, 1, 9, 0, 0, 5],\n    [0, 0, 0, 0, 8, 0, 0, 7, 9]\n]\n\nif solve_sudoku(sudoku_board):\n    for row in sudoku_board:\n        print(row)\nelse:\n    print(\"This Sudoku cannot be solved.\")"
+      },
+      {
+        "id":"12",
+        "questionId": "12",
+        "answer": "def shortest_addition_chain(n):\n    def dfs(target, current_chain, shortest_chain):\n        if target == n:\n            shortest_chain[0] = min(shortest_chain[0], len(current_chain))\n            return\n        \n        if len(current_chain) >= shortest_chain[0]:\n            return\n        \n        for num in current_chain:\n            dfs(target + num, current_chain + [target + num], shortest_chain)\n    \n    shortest = [float('inf')]\n    dfs(1, [1], shortest)\n    return shortest[0] - 1\n\n# Example usage:\nnum = 15\nprint(f\"Length of shortest addition chain for {num}: {shortest_addition_chain(num)}\")"
+      },
+      {
+        "id":"13",
+        "questionId": "13",
+        "answer": "import heapq\n\ndef dijkstra(graph, start):\n    distances = {node: float('infinity') for node in graph}\n    distances[start] = 0\n    priority_queue = [(0, start)]\n    \n    while priority_queue:\n        current_distance, current_node = heapq.heappop(priority_queue)\n        \n        if current_distance > distances[current_node]:\n            continue\n        \n        for neighbor, weight in graph[current_node].items():\n            distance = current_distance + weight\n            if distance < distances[neighbor]:\n                distances[neighbor] = distance\n                heapq.heappush(priority_queue, (distance, neighbor))\n    \n    return distances\n\n# Example usage:\ngraph = {\n    'A': {'B': 1, 'C': 4},\n    'B': {'A': 1, 'C': 2, 'D': 5},\n    'C': {'A': 4, 'B': 2, 'D': 1},\n    'D': {'B': 5, 'C': 1}\n}\n\nstart_node = 'A'\ndistances = dijkstra(graph, start_node)\nprint(\"Shortest distances to the start node:\", distances)"
+      },
+      {
+        "id":"14",
+        "questionId": "14",
+        "answer": "for a in range(1, 1001):\n    if a % 17 == 10 and a % 31 == 15:\n        break\n\nprint(f\"Cryptography key: {a}\")"
+      },
+      {
+        "id":"15",
+        "questionId": "15",
+        "answer": "def draw_chessboard_with_knight_moves(start_row, start_col):\n    # Create the chessboard size and represent it as a matrix\n    board_size = 8\n    chessboard = [[' ' for _ in range(board_size)] for _ in range(board_size)]\n\n    # Calculate the squares where the knight can move\n    moves = [\n        (-2, -1), (-2, 1),\n        (-1, -2), (-1, 2),\n        (1, -2), (1, 2),\n        (2, -1), (2, 1)\n    ]\n    valid_moves = [(start_row + r, start_col + c) for r, c in moves if 0 <= start_row + r < board_size and 0 <= start_col + c < board_size]\n\n    # Mark the position of the knight\n    chessboard[start_row][start_col] = 'K'\n\n    # Mark the squares where the knight can move\n    for move in valid_moves:\n        row, col = move\n        chessboard[row][col] = 'X'\n    \n    # Draw the chessboard\n    print(\"  \" + \" \".join([chr(65 + i) for i in range(board_size)]))  # Column headers\n    for i in range(board_size):\n        print(f\"{i + 1} {' '.join(chessboard[i])} {i + 1}\")  # Row numbers and chessboard\n    print(\"  \" + \" \".join([chr(65 + i) for i in range(board_size)]))  # Column headers\n\n# Example usage:\nstart_row, start_col = 3, 3\nprint(f\"Possible squares the knight can move from position ({start_row}, {start_col}):\")\ndraw_chessboard_with_knight_moves(start_row, start_col)"
+      },
+      {
+        "id":"16",
+        "questionId": "16",
+        "answer": "def find_triplets(target):\n    result = []\n    for a in range(1, target):\n        for b in range(a, target):\n            c = target - a - b\n            if c >= b and a * b * c == target and a + b + c == target:\n                result.append((a, b, c))\n    return result\n\n# Example usage:\ntarget_number = 24\ntriplets = find_triplets(target_number)\nprint(f\"Triple numbers equal to {target_number}: {triplets}\")"
+      },
+      {
+        "id":"17",
+        "questionId": "17",
+        "answer": "import secrets\nimport math\n\n# Prime number check function\ndef isprime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\n# Modular inverse function using Extended Euclidean Algorithm\ndef mod_inverse(e, phi):\n    t, new_t = 0, 1\n    r, new_r = phi, e\n    \n    while new_r != 0:\n        quotient = r // new_r\n        t, new_t = new_t, t - quotient * new_t\n        r, new_r = new_r, r - quotient * new_r\n\n    if r > 1:\n        return None  # No modular inverse if gcd != 1\n    if t < 0:\n        t = t + phi\n\n    return t\n\ndef generate_key():\n    p = secrets.randbelow(100) + 1\n    q = secrets.randbelow(50) + 1\n    \n    while not isprime(p) or not isprime(q) or p == q:\n        p = secrets.randbelow(100) + 1\n        q = secrets.randbelow(50) + 1\n    \n    n = p * q\n    phi_n = (p - 1) * (q - 1)\n    \n    e = secrets.randbelow(phi_n - 1) + 2\n    while math.gcd(e, phi_n) != 1:\n        e = secrets.randbelow(phi_n - 1) + 2\n    \n    d = mod_inverse(e, phi_n)\n    \n    if d is None:\n        return generate_key()  # If no mod inverse, regenerate keys\n    \n    public_key = (n, e)\n    private_key = (n, d)\n    \n    return public_key, private_key\n\npublic_key, private_key = generate_key()\nprint(\"Public Key:\", public_key)\nprint(\"Private Key:\", private_key)"
+      },
+      {
+        "id":"18",
+        "questionId": "18",
+        "answer": "def is_prime(num):\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef find_reversible_primes(start, end):\n    reversible_primes = []\n    for num in range(start, end + 1):\n        if is_prime(num):\n            reversed_num = int(str(num)[::-1])\n            if is_prime(reversed_num):\n                reversible_primes.append(num)\n    return reversible_primes\n\n# Example usage:\nstart_range = 1\nend_range = 100\nreversible_primes = find_reversible_primes(start_range, end_range)\nprint(f\"Reversible prime numbers between {start_range} and {end_range}: {reversible_primes}\")"
+      },
+      {
+        "id":"19",
+        "questionId": "19",
+        "answer": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef search_in_bst(root, val):\n    if not root:\n        return False\n    \n    if root.val == val:\n        return True\n    elif val < root.val:\n        return search_in_bst(root.left, val)\n    else:\n        return search_in_bst(root.right, val)\n\n# Example usage:\nroot = TreeNode(8)\nroot.left = TreeNode(3)\nroot.right = TreeNode(10)\nroot.left.left = TreeNode(1)\nroot.left.right = TreeNode(6)\nroot.right.right = TreeNode(14)\n\nsearch_value = 6\nif search_in_bst(root, search_value):\n    print(f\"The value {search_value} is present in the tree.\")\nelse:\n    print(f\"The value {search_value} is not present in the tree.\")"
+      },
+      {
+        "id":"20",
+        "questionId": "20",
+        "answer": "def diffie_hellman(p, g, a, b):\n    # Alice and Bob's public keys\n    A = pow(g, a, p)\n    B = pow(g, b, p)\n\n    # Computing the shared keys\n    shared_key_Alice = pow(B, a, p)\n    shared_key_Bob = pow(A, b, p)\n\n    # Checking if the shared keys are equal\n    if shared_key_Alice == shared_key_Bob:\n        return shared_key_Alice\n    else:\n        return None\n\n# Given parameters\np = 353\ng = 3\na = 97\nb = 233\n\n# Computing the shared key\nshared_key = diffie_hellman(p, g, a, b)\n\nif shared_key is not None:\n    print(\"Shared Key:\", shared_key)\nelse:\n    print(\"Shared key couldn't be computed.\") #Output:160 "
+    
+      },
+      {
+        "id":"21",
+        "questionId": "21",
+        "answer": "def print_identity_matrix(n):\n    # Create an NxN identity matrix\n    identity_matrix = [[1 if i == j else 0 for j in range(n)] for i in range(n)]\n    \n    # Print the matrix\n    for row in identity_matrix:\n        print(' '.join(map(str, row)))\n\n# Set the value of N\nN = 5\nprint_identity_matrix(N)"
+      },
+      {
+        "id":"22",
+        "questionId": "22",
+        "answer": "def fill_matrix(n):\n    matrix = [[0] * n for _ in range(n)]\n    top, bottom, left, right = 0, n - 1, 0, n - 1\n    num = 1\n\n    while num <= n * n:\n        for i in range(left, right + 1):\n            matrix[top][i] = num\n            num += 1\n        top += 1\n\n        for i in range(top, bottom + 1):\n            matrix[i][right] = num\n            num += 1\n        right -= 1\n\n        for i in range(right, left - 1, -1):\n            matrix[bottom][i] = num\n            num += 1\n        bottom -= 1\n\n        for i in range(bottom, top - 1, -1):\n            matrix[i][left] = num\n            num += 1\n        left += 1\n\n    return matrix\n\n# Example usage:\nn = 4\nresult = fill_matrix(n)\nfor row in result:\n    print(row)"
+    
+      },
+      {
+        "id":"23",
+        "questionId": "23",
+        "answer": "def CantorSet(n):\n    set_ = set()\n    for i in range(2**n + 1):\n        set_.add(i / (2**n))\n    return sorted(list(set_))\n\ndef IsInCantorSet(x, n):\n    subset = CantorSet(n)\n    return x in subset\n\n# Example for Question 1\nn_value = 3\ncantor_set = CantorSet(n_value)\nprint(f\"Cantor Set (n = {n_value}):\", cantor_set)\n\n# Example for Question 2\nx_value = 0.5\ncheck = IsInCantorSet(x_value, n_value)\nprint(f\"Is {x_value} in the Cantor Set?:\", check)"
+      },
+      {
+        "id":"24",
+        "questionId": "24",
+        "answer": "# Extended Euclidean Algorithm to find solutions for ax + by = gcd(a, b)\ndef extended_gcd(a, b):\n    if b == 0:\n        return a, 1, 0\n    gcd, x1, y1 = extended_gcd(b, a % b)\n    x = y1\n    y = x1 - (a // b) * y1\n    return gcd, x, y\n\n# 1. Solve 3x + 5y = 1\ngcd1, x1, y1 = extended_gcd(3, 5)\nprint(f\"Solution for 3x + 5y = 1: x = {x1}, y = {y1}\")\n\n# 2. Solve 19x + 27w = 1\ngcd2, x2, w2 = extended_gcd(19, 27)\nprint(f\"Solution for 19x + 27w = 1: x = {x2}, w = {w2}\")\n\n# 3. Solve 7m + 11n = 1\ngcd3, m3, n3 = extended_gcd(7, 11)\nprint(f\"Solution for 7m + 11n = 1: m = {m3}, n = {n3}\")"
+      },
+      {
+        "id":"25",
+        "questionId": "25",
+        "answer": "def extended_gcd(a, b):\n    if b == 0:\n        return a, 1, 0\n    else:\n        d, x, y = extended_gcd(b, a % b)\n        return d, y, x - (a // b) * y\n\ndef find_coefficients(d, a, b):\n    gcd, x, y = extended_gcd(a, b)\n    factor = d // gcd\n    return factor * x, factor * y\n\ndef find_xy(d, a, b):\n    x, y = find_coefficients(d, a, b)\n    return x, y\n\n# Given values\na = 1140\nb = 480\nd = 60\n\n# Finding coefficients for x and y\nx, y = find_xy(d, a, b)\n\nprint(\"x =\", x)\nprint(\"y =\", y)"
+    
+      },
+      {
+        "id":"26",
+        "questionId": "26",
+        "answer": "def find_d(phi_n, e):\n    d = 1\n    while True:\n        if (d * e) % phi_n == 1:\n            return d\n        d += 1\n\n# Example usage\nphi_n = 40  # For example, the value of (p-1)(q-1)\ne = 7       # Encryption key\nprint(\"Value of d:\", find_d(phi_n, e))"
+      },
+      {
+        "id":"27",
+        "questionId": "27",
+        "answer": "def identity_matrix(n):\n    matrix = [[0] * n for _ in range(n)]  # Creating an NxN matrix\n    for i in range(n):\n        matrix[i][i] = 1  # Setting elements on the main diagonal to 1\n    return matrix\n\ndef print_matrix(matrix):\n    for row in matrix:\n        for element in row:\n            print(element, end=\" \")\n        print()\n\ndef main():\n    n = 5  # Size of the matrix\n    identity_matrix_result = identity_matrix(n)\n    print_matrix(identity_matrix_result)\n\nif __name__ == \"__main__\":\n    main()"
+      },
+      {
+        "id":"28",
+        "questionId": "28",
+        "answer": "def extended_gcd(a, b):\n    if b == 0:\n        return a, 1, 0\n    else:\n        d, x, y = extended_gcd(b, a % b)\n        return d, y, x - (a // b) * y\n\ndef convert_to_base(n, base):\n    result = \"\"\n    while n > 0:\n        result = str(n % base) + result\n        n //= base\n    return result\n\ndef find_coefficients(a, b):\n    gcd, x, y = extended_gcd(a, b)\n    return x, y\n\n# Given values\na = 3\nb = 543\n\n# Finding coefficients using Extended Euclidean Algorithm\nx, y = find_coefficients(a, b)\n\n# Base conversion\nbase_representation = convert_to_base(b, a)\n\nprint(f\"{b} base {a} = {base_representation}\")\nprint(\"Coefficients:\")\nprint(\"x =\", x)\nprint(\"y =\", y)"
+    
+    
+      },
+    
+      {
+        "id":"29",
+        "questionId": "29",
+        "answer": "def encrypt(message, public_key):\n    n, e = public_key\n    encrypted_message = [pow(ord(char), e, n) for char in message]\n    return encrypted_message\n\n# Example public key (replace this with your actual public key)\npublic_key = (3233, 17)  # Example values for n and e\n\nmessage = \"Hello, world!\"\nencrypted_message = encrypt(message, public_key)\nprint(\"Encrypted Message:\", encrypted_message)"
+      },
+      {
+        "id":"30",
+        "questionId": "30",
+        "answer": "def find_primes_and_d():\n    # Function to check if a number is prime\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    # Function to find prime factors of a number\n    def prime_factors(num):\n        factors = []\n        for i in range(2, num + 1):\n            while num % i == 0:\n                factors.append(i)\n                num //= i\n        return factors\n\n    # Function to find a suitable d value\n    def find_d(phi_n, e):\n        d = 1\n        while True:\n            if (d * e) % phi_n == 1:\n                return d\n            d += 1\n\n    # Find two large prime numbers p and q\n    p = 17  # Replace with actual value\n    q = 23  # Replace with actual value\n\n    # Calculate n = p * q\n    n = p * q\n\n    # Calculate Euler's totient function phi(n)\n    phi_n = (p - 1) * (q - 1)\n\n    # Choose e, the encryption key\n    e = 7  # Replace with actual value\n\n    # Find d, the decryption key\n    d = find_d(phi_n, e)\n\n    return p, q, n, d\n\n# Example usage\np, q, n, d = find_primes_and_d()\nprint(\"p:\", p)\nprint(\"q:\", q)\nprint(\"n:\", n)\nprint(\"d:\", d)"
+      },
+      {
+        "id":"31",
+        "questionId": "31",
+        "answer": "# Function to calculate the GCD\ndef gcd(a, b):\n    while b != 0:\n        a, b = b, a % b\n    return a\n\n# Function to calculate Euler's Totient function φ(n)\ndef euler_totient(n):\n    count = 0\n    for i in range(1, n + 1):\n        if gcd(n, i) == 1:  # Count numbers that are coprime with n\n            count += 1\n    return count\n\n# Example for n = 642\nn = 642\nphi_n = euler_totient(n)\n\nprint(f\"φ({n}) = {phi_n}\")"
+      },
+      {
+        "id":"32",
+        "questionId": "32",
+        "answer": "def gcd_extended(a, b):\n    if a == 0:\n        return b, 0, 1\n    gcd, x1, y1 = gcd_extended(b % a, a)\n    x = y1 - (b // a) * x1\n    y = x1\n    return gcd, x, y\n\ndef solve_congruence(a, b, m):\n    gcd, x0, y0 = gcd_extended(a, m)\n    if b % gcd != 0:\n        return \"No solution\"\n    x = (x0 * (b // gcd)) % m\n    solutions = []\n    for i in range(gcd):\n        solutions.append((x + i * (m // gcd)) % m)\n    return solutions\n\na = 55\nb = 20\nm = 105\n\nsolutions = solve_congruence(a, b, m)\nprint(\"Solutions:\", solutions)"
+      },
+      {
+        "id":"33",
+        "questionId": "33",
+        "answer": "import math\n\n# Data (time and plant size)\nt = [0, 1, 2, 3, 4, 5]  # Time\nP = [0, 5, 12, 20, 32, 45]  # Plant size\n\n# Function to calculate plant size based on k, I, N, G\ndef plant_size(t, k, I, N, G):\n    return [(1 - math.exp(-k * ti)) * I * N * G for ti in t]\n\n# Function to calculate mean squared error\ndef mean_squared_error(predicted, actual):\n    return sum((p - a) ** 2 for p, a in zip(predicted, actual)) / len(actual)\n\n# Grid search for k (example range and step size, you can adjust these)\nk_values = [0.1 * i for i in range(1, 21)]  # Example values for k from 0.1 to 2.0\nI = 5  # Assume some constant values for I, N, G\nN = 5\nG = 5\n\nbest_k = None\nlowest_error = float('inf')\n\n# Perform grid search\nfor k in k_values:\n    predicted_P = plant_size(t, k, I, N, G)\n    error = mean_squared_error(predicted_P, P)\n    \n    if error < lowest_error:\n        lowest_error = error\n        best_k = k\n\nprint(f\"Optimized k constant: {best_k}\")"
+      }
+]
